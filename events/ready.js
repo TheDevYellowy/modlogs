@@ -10,6 +10,7 @@ module.exports = class {
     }
 
     async run() {
+        this.client.user.setPresence({ activities: [{ name: 'Bowling', type: 5 }], status: 'dnd' });
         console.log(`${this.client.user.username} is ready to log`);
     }
 }

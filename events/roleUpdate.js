@@ -14,16 +14,14 @@ module.exports = class {
      * @param {Role} newRole
      */
     async run(oldRole, newRole) {
-        var embeds = [];
-
-        const data = await this.client.findOrCreateGuild({ id: newRole.guildId });
+        const data = await this.client.findOrCreateGuild({ id: newRole.guild.id });
         if(data.logId == undefined) return;
         var log = await newRole.guild.channels.fetch(data.logId);
         if(log.type !== 0) return;
 
         const audit = (await newRole.guild.fetchAuditLogs({ type: 31 })).entries.first();
 
-        if(oldRole.permissions !== newRole.permissions) {
+        if(oldRole.permissions.bitfield !== newRole.permissions.bitfield) {
             var oldPerms = oldRole.permissions.serialize();
             var newPerms = newRole.permissions.serialize();
 
@@ -37,8 +35,6 @@ module.exports = class {
                 }
             }
 
-            console.log({ gained, lost })
-
             const perms = new EmbedBuilder()
                 .setTitle('Role Permission Update')
                 .setDescription(`${audit.executor.username} edited ${newRole.toString()}\nIt lost the following permissions: ${lost.length > 0 ? lost.join(', ') : 'None'}\n\nAnd gained the following permissions: ${gained.length > 0 ? gained.join(', ') : 'None'}`);
@@ -47,7 +43,7 @@ module.exports = class {
         } else if(oldRole.name !== newRole.name) {
             const name = new EmbedBuilder()
                 .setTitle('Role Name Update')
-                .setDescription(`${audit.executor.username} edited a role\n\n__Old Name__\n${oldRole.name}\n__New Name__\n${newRole.name}`);
+                .setDescription(`${audit.executor.username} edited a role\n\n__Old Name__\n${oldRole.name}\n\n__New Name__\n${newRole.name}`);
 
             log.send({ embeds: [name] })
         }

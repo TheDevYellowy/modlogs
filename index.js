@@ -1,3 +1,5 @@
+console.clear();
+
 const Client = require('./classes/bot');
 const client = new Client();
 

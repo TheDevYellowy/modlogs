@@ -14,6 +14,6 @@ module.exports = class {
      * @param {DMChannel | NonThreadGuildBasedChannel} newChannel 
      */
     async run(oldChannel, newChannel) {
-
+        
     }
 }

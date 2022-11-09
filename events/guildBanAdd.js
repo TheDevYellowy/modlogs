@@ -13,7 +13,7 @@ module.exports = class {
      * @param {GuildBan} ban
      */
     async run(ban) {
-        const audit = (await ban.guild.fetchAuditLogs({ type: 22 })).entries.first();
+        const audit = (await ban.guild.fetchAuditLogs({ type: null })).entries.first();
         const text = `**${audit.executor.username}** banned **${ban.user.username}** for **${ban.reason ? ban.reason : 'No Reason Provided'}**`;
 
         const data = await this.client.findOrCreateGuild({ id: ban.guild.id });
