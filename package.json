@@ -1,0 +1,11 @@
+{
+  "name": "modlogs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TheDevYellowy/modlogs",
+  "author": "TheDevYellowy",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.6.0"
+  }
+}
