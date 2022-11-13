@@ -11,7 +11,7 @@ module.exports = {
      */
     async execute(interaction) {
         const out = await exec('git pull');
-        interaction.reply({ content: out.stdout });
+        await interaction.reply({ content: out.stdout });
 
         process.exit(1);
     },
