@@ -48,7 +48,7 @@ module.exports = class {
             log.send({ embeds: [name] })
         } else if(oldRole.hexColor !== newRole.hexColor) {
             const color = new EmbedBuilder()
-                .setThumbnail('Role Color Update')
+                .setTitle('Role Color Update')
                 .setDescription(`${audit.executor.username} edited a role\n\n__Old Color__\n${oldRole.hexColor}\n\n__New Color__\n${newRole.hexColor}`);
 
             log.send({ embeds: [color] });
