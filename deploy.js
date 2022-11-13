@@ -6,8 +6,8 @@ module.exports = () => {
 
     const commands = [];
 
-    const oo = [];
-    const owner = ['update'];
+    const oo = ['update'];
+    const owner = [];
 
     const commandsPath = path.join(__dirname, 'commands');
     const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
