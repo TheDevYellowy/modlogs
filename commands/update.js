@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, CommandInteraction } = require('discord.js');
-const { execSync } = require('child_process')
+const { exec } = require('child_process');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,8 +10,8 @@ module.exports = {
      * @param {CommandInteraction} interaction
      */
     async execute(interaction) {
-        await execSync('git pull');
-        interaction.reply('git pull done, restarting');
+        const out = await exec('git pull');
+        interaction.reply({ content: out.stdout });
 
         process.exit(1);
     },
